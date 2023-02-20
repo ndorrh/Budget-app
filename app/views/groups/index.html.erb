@@ -6,9 +6,9 @@
   <% @groups.each do |group| %>
     <%= render group %>
     <p>
-      <%= link_to "Show this group", group %>
+      <%= link_to "Category details", group %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New group", new_group_path %>
+<%= link_to "Add category", new_group_path %>

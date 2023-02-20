@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   validate :acceptable_image
   validates :category_icon, attached: true
+  validates :name, presence: true
 
   has_one_attached :category_icon
   has_many :contract_groups, dependent: :destroy

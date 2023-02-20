@@ -1,13 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @group %>
-<%@group.contracts.each do |contract|%>
+<%@group.contracts.order(created_at: :desc).each do |contract|%>
 <%= render contract %>
 <%end%>
 
 <div>
+<p><%= link_to "Add transaction", new_contract_path %></p>
   <%= link_to "Edit this group", edit_group_path(@group) %> |
-  <%= link_to "Back to groups", groups_path %>
+  <%= link_to "Back", groups_path %>
 
   <%= button_to "Destroy this group", @group, method: :delete %>
 </div>
