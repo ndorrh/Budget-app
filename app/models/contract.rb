@@ -1,4 +1,5 @@
 class Contract < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
-  has_and_belongs_to_many :groups
+  has_many :contract_groups, dependent: :destroy
+  has_many :groups, through: :contract_groups
 end

@@ -1,3 +1,4 @@
 class Group < ApplicationRecord
-  has_and_belongs_to_many :contracts
+  has_many :contract_groups, dependent: :destroy
+  has_many :contracts, through: :contract_groups
 end
