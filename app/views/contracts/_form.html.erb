@@ -22,11 +22,11 @@
   </div>
 
   <div>
-    <%= form.label :author_id, style: "display: block" %>
-    <%= form.text_field :author_id %>
+     <%= form.label :groups, style: "display: block"%>
+    <%= form.collection_check_boxes :groups, group_list, :id, :name , required:true%>
   </div>
-
   <div>
     <%= form.submit %>
+    
   </div>
 <% end %>

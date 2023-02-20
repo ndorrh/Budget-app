@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @group %>
+<%@group.contracts.each do |contract|%>
+<%= render contract %>
+<%end%>
 
 <div>
   <%= link_to "Edit this group", edit_group_path(@group) %> |
