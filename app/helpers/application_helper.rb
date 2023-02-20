@@ -14,4 +14,9 @@ end
 def resource_class
   devise_mapping.to
 end
+
+def transaction_total(category)
+  category.contracts.reduce(0) { |sum, contract| sum + contract.amount }
+end
+
 end

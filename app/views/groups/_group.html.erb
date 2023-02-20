@@ -5,7 +5,12 @@
   </p>
 
   <p>
-  <%= image_tag group.category_icon || "male.png" %>
+  <% if group.category_icon.attached?%>
+   <image src="<%=(url_for(group.category_icon)) %>">
+  <%else%>
+    <div><%= image_tag group.category_icon || "male.png" %> </div> 
+  <%end%>
+  <p>$<%=transaction_total(group)%></p>
   </p>
 
 </div>

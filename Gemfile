@@ -36,6 +36,10 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 # devise for authentication
 gem 'devise'
 
+# Rails 5.2 and Rails 6
+gem 'active_storage_validations'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
