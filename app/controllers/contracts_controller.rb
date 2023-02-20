@@ -21,8 +21,9 @@ class ContractsController < ApplicationController
 
   # POST /contracts or /contracts.json
   def create
-    @contract = Contract.new(contract_params)
-
+    @contract = Contract.new(contract_params.except(:groups))   
+    @contract.author = current_user
+    create_or_delete_contracts_groups(@contract, params[:contract][:groups])
     respond_to do |format|
       if @contract.save
         format.html { redirect_to contract_url(@contract), notice: "Contract was successfully created." }
@@ -36,8 +37,10 @@ class ContractsController < ApplicationController
 
   # PATCH/PUT /contracts/1 or /contracts/1.json
   def update
+    @contract.atleast_one_is_checked(params[:contract][:groups])
+    create_or_delete_contracts_groups(@contract, params[:contract][:groups])
     respond_to do |format|
-      if @contract.update(contract_params)
+      if @contract.update(contract_params.except(:groups))
         format.html { redirect_to contract_url(@contract), notice: "Contract was successfully updated." }
         format.json { render :show, status: :ok, location: @contract }
       else
@@ -58,13 +61,18 @@ class ContractsController < ApplicationController
   end
 
   private
+    def create_or_delete_contracts_groups(contract, groups)
+      contract.contract_groups.destroy_all
+      groups.each do |group|
+        ContractGroup.create(contract:contract, group: Group.find(group)) if group != ""
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_contract
       @contract = Contract.find(params[:id])
     end
-
     # Only allow a list of trusted parameters through.
     def contract_params
-      params.require(:contract).permit(:name, :amount, :author_id)
+      params.require(:contract).permit(:name, :amount, :groups => [])
     end
 end
