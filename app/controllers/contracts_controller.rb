@@ -28,7 +28,7 @@ class ContractsController < ApplicationController
       flash.alert = "Select atleast one checkbox"
       redirect_to new_contract_path and return
     end
-    
+
     respond_to do |format| 
       if @contract.save && create_or_delete_contracts_groups(@contract, params[:contract][:groups]) 
         format.html { redirect_to group_url(params[:contract][:groups][1]), notice: "Contract was successfully created." }
@@ -42,6 +42,11 @@ class ContractsController < ApplicationController
 
   # PATCH/PUT /contracts/1 or /contracts/1.json
   def update
+    
+    if params[:contract][:groups].length <= 1
+      flash.alert = "Select atleast one checkbox"
+      redirect_to edit_contract_path and return
+    end
     respond_to do |format|
       if @contract.update(contract_params.except(:groups)) && create_or_delete_contracts_groups(@contract, params[:contract][:groups])
         format.html { redirect_to group_url(params[:contract][:groups][1]), notice: "Contract was successfully updated." }
