@@ -23,13 +23,14 @@ class ContractsController < ApplicationController
   def create
     @contract = Contract.new(contract_params.except(:groups))   
     @contract.author = current_user
+
     if params[:contract][:groups].length <= 1 
       flash.alert = "Select atleast one checkbox"
       redirect_to new_contract_path and return
     end
-    create_or_delete_contracts_groups(@contract, params[:contract][:groups]) 
-    respond_to do |format|
-      if @contract.save
+    
+    respond_to do |format| 
+      if @contract.save && create_or_delete_contracts_groups(@contract, params[:contract][:groups]) 
         format.html { redirect_to group_url(params[:contract][:groups][1]), notice: "Contract was successfully created." }
         format.json { render :show, status: :created, location: @contract }
       else
@@ -41,11 +42,9 @@ class ContractsController < ApplicationController
 
   # PATCH/PUT /contracts/1 or /contracts/1.json
   def update
-    @contract.atleast_one_is_checked(params[:contract][:groups])
-    create_or_delete_contracts_groups(@contract, params[:contract][:groups])
     respond_to do |format|
-      if @contract.update(contract_params.except(:groups))
-        format.html { redirect_to contract_url(@contract), notice: "Contract was successfully updated." }
+      if @contract.update(contract_params.except(:groups)) && create_or_delete_contracts_groups(@contract, params[:contract][:groups])
+        format.html { redirect_to group_url(params[:contract][:groups][1]), notice: "Contract was successfully updated." }
         format.json { render :show, status: :ok, location: @contract }
       else
         format.html { render :edit, status: :unprocessable_entity }

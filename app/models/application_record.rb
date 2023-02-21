@@ -12,6 +12,5 @@ class ApplicationRecord < ActiveRecord::Base
   unless acceptable_types.include?(category_icon.content_type)
     errors.add(:category_icon, "must be a JPEG or PNG or SVG")
   end
-
   end
 end

@@ -17,12 +17,12 @@
   </div>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
+    <%= form.label :amount, style: "display: block"%>
     <%= form.number_field :amount %>
   </div>
-
+ <span class="check_box_validation" style="width:fit-content; color:red; margin:unset;"><%= alert %></span>
   <div>
-     <%= form.label :groups, style: "display: block"%>
+     <%= form.label "Select category", style: "display: block"%>
     <%= form.collection_check_boxes :groups, group_list, :id, :name , required:true%>
   </div>
   <div>
