@@ -23,10 +23,14 @@ class ContractsController < ApplicationController
   def create
     @contract = Contract.new(contract_params.except(:groups))   
     @contract.author = current_user
-    create_or_delete_contracts_groups(@contract, params[:contract][:groups])
+    if params[:contract][:groups].length <= 1 
+      flash.alert = "Select atleast one checkbox"
+      redirect_to new_contract_path and return
+    end
+    create_or_delete_contracts_groups(@contract, params[:contract][:groups]) 
     respond_to do |format|
       if @contract.save
-        format.html { redirect_to contract_url(@contract), notice: "Contract was successfully created." }
+        format.html { redirect_to group_url(params[:contract][:groups][1]), notice: "Contract was successfully created." }
         format.json { render :show, status: :created, location: @contract }
       else
         format.html { render :new, status: :unprocessable_entity }
