@@ -46,4 +46,50 @@ describe 'GET /groups' do
       expect(response.body).to include('Group 1')
     end
   end
+
+  describe 'GET /groups/new' do
+    it 'Get /groups/new url template' do
+      get '/groups/new'
+      expect(response).to have_http_status(200)
+    end
+
+    it 'render new template)' do
+      get '/groups/new'
+      expect(response).to render_template(:new)
+    end
+
+    it 'render correct response body)' do
+      get '/groups/new'
+      expect(response.body).to include('Add category')
+    end
+  end
+
+  describe 'POST /groups' do
+    it 'Post /groups url template' do
+      post '/groups', params: { group: { name: 'Group 2', icon: 'icon2' } }
+      expect(response).to have_http_status(302)
+    end
+
+    it 'redirect to index template)' do
+      post '/groups', params: { group: { name: 'Group 2', icon: 'icon2' } }
+      expect(response).to redirect_to('/groups')
+    end
+  end
+
+  describe 'GET /groups/:id/edit' do
+    it 'Get /groups/:id/edit url template' do
+      get "/groups/#{Group.last.id}/edit"
+      expect(response).to have_http_status(200)
+    end
+
+    it 'render edit template)' do
+      get "/groups/#{Group.last.id}/edit"
+      expect(response).to render_template(:edit)
+    end
+
+    it 'render correct response body)' do
+      get "/groups/#{Group.last.id}/edit"
+      expect(response.body).to include('Edit category')
+    end
+  end
 end
