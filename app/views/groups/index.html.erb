@@ -1,14 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Groups</h1>
-
-<div id="groups">
+<div id="groups" class="position-relative z-index-1 p-3 pt-0">
+<p style="color: green" ><%= notice %></p>
   <% @groups.each do |group| %>
-    <%= render group %>
-    <p>
-      <%= link_to "Category details", group %>
-    </p>
+      <%= link_to render(:partial => 'card', locals:{group:group}), group, class:"link-dark", style:"text-decoration:none;" %>
   <% end %>
 </div>
+<div class="position-fixed height start-50 translate-middle w-100 d-flex justify-content-center p-2 z-index-2" style="background-color:#60B524;">
+<button type="button" class="btn btn-outline-light w-75 rounded-0"><%= link_to "Add category", new_group_path, class:"link-light link-with", style:"text-decoration:none;" %></button>
+</div>
 
-<%= link_to "Add category", new_group_path %>
+
