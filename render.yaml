@@ -1,6 +1,6 @@
 databases:
   - name: mysite
-    databaseName: Budget_App_production
+    databaseName: Budget
     user: mysite
 
 services:
