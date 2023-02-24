@@ -1,0 +1,55 @@
+<div class="container-fluid mt-3">
+<%= form_with(model: contract) do |form| %>
+  <% if contract.errors.any? %>
+    <div style="color: red">
+      <p><%= pluralize(contract.errors.count, "error") %> prohibited this contract from being saved:</p>
+
+      <ul>
+        <% contract.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :name,  class:"form-control", id:"floatingPassword", placeholder:"password" %>
+    <%= form.label :name %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.number_field :amount, class:"form-control", id:"floatingPassword", placeholder:"password" %>
+    <%= form.label :amount%>
+  </div>
+ <span class="check_box_validation" style="width:fit-content; color:red; margin:unset;"><%= alert %></span>
+  <div>
+     <%= form.label "Select category", style: "display: block"%>
+    <%= form.collection_check_boxes :groups, group_list, :id, :name , required:true%>
+  </div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create transaction
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add transaction</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to Add this transaction?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= form.submit 'Add', class:"btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
