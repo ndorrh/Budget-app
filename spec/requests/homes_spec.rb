@@ -15,7 +15,7 @@ RSpec.describe 'Homes', type: :request do
 
     it 'displays the correct content' do
       get '/'
-      expect(response.body).to include('WELCOME TO MY TRANSACTION APP')
+      expect(response.body).to include('SPENDWISELY')
     end
   end
 end

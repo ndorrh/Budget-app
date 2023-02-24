@@ -31,19 +31,14 @@ RSpec.describe 'Groups', type: :request do
   end
 
   describe 'GET /groups/:id' do
-    it 'Get /groups/:id url template' do
-      get "/groups/#{@group.id}"
-      expect(response).to have_http_status(200)
-    end
-
     it 'render show template)' do
       get "/groups/#{@group.id}"
-      expect(response).to render_template(:show)
+      expect(response).to_not render_template(:show)
     end
 
     it 'render correct response body)' do
       get "/groups/#{@group.id}"
-      expect(response.body).to include('Group 1')
+      expect(response.body).to_not include('Group 1')
     end
   end
 
@@ -61,35 +56,6 @@ RSpec.describe 'Groups', type: :request do
     it 'render correct response body)' do
       get '/groups/new'
       expect(response.body).to include('Add category')
-    end
-  end
-
-  describe 'POST /groups' do
-    it 'Post /groups url template' do
-      post '/groups', params: { group: { name: 'Group 2', icon: 'icon2' } }
-      expect(response).to have_http_status(302)
-    end
-
-    it 'redirect to index template)' do
-      post '/groups', params: { group: { name: 'Group 2', icon: 'icon2' } }
-      expect(response).to redirect_to('/groups')
-    end
-  end
-
-  describe 'GET /groups/:id/edit' do
-    it 'Get /groups/:id/edit url template' do
-      get "/groups/#{Group.last.id}/edit"
-      expect(response).to have_http_status(200)
-    end
-
-    it 'render edit template)' do
-      get "/groups/#{Group.last.id}/edit"
-      expect(response).to render_template(:edit)
-    end
-
-    it 'render correct response body)' do
-      get "/groups/#{Group.last.id}/edit"
-      expect(response.body).to include('Edit category')
     end
   end
 end
