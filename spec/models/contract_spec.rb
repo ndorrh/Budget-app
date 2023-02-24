@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contract, type: :model do
-  subject { Contract.new(author_id: 1, name: 'oswald', amount:200) }
+  subject { Contract.new(author_id: 1, name: 'oswald', amount: 200) }
   before { subject.save }
 
   it 'name should be present' do

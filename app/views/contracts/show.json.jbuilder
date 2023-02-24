@@ -1,1 +1,1 @@
-json.partial! "contracts/contract", contract: @contract
+json.partial! 'contracts/contract', contract: @contract

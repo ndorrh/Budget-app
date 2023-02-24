@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  subject { Group.new(name: 'oswald', icon:'www.image.com' )}
+  subject { Group.new(name: 'oswald', icon: 'www.image.com') }
   before { subject.save }
 
   it 'name should be present' do
