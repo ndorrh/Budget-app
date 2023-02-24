@@ -3,6 +3,6 @@
 set -o errexit
 
 bundle install
-rails assets:precompile
+RAILS_ENV=production rails assets:precompile
 rails assets:clean
 rails db:migrate
