@@ -10,31 +10,17 @@
   </head>
 
   <body style="background-color:RGB(241, 243, 242)" >
+  <% if current_page?(groups_path) %>
 <nav class="navbar navbar-expand-lg" style="background-color:#3778C2; color:#EDF5FE;">
   <div class="container-fluid">
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
       <i class="bi bi-list" style="color:#EDF5FE;"></i>
     </button>
-    <% if current_page?(groups_path) %>
     <a class="navbar-brand" href="#"  style="color:#EDF5FE;"><%='TRANSACTIONS'%></a>
-    <% elsif current_page?(group_path) %>
-    <a class="navbar-brand" href="#"  style="color:#EDF5FE;"><%='DETAILS'%></a>
-    <%end%>
     <i class="bi bi-search"></i>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">Transactions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Details</a>
-        </li>
-        
-        <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'signOut'%></li>
+      <ul class="navbar-nav">        
+        <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger'%></li>
       </ul>
     </div>
   </div>
@@ -57,8 +43,10 @@
   </div>
   <h5 class="card-title my-0">$<%='56'%></h5>
     </div>
+    
   </div>
 </div>
+ <%end%>
 <%#logout button and page body%>
     <%= yield %>
   </body>
