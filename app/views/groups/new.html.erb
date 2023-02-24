@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg" style="background-color:#3778C2; color:#EDF5FE;">
+<%= link_to groups_path, class:"link-light ms-4 fs-3", style:"text-decoration:none;" do%>
+<i class="bi bi-arrow-left"></i>
+<%end%>
+<a class="navbar-brand w-50 me-5" href="#"  style="color:#EDF5FE;"><%='Add category'%></a>
+</nav>
+
+
+<%= render "form", group: @group %>
