@@ -83,7 +83,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> View Video Demo [here]()
+> View Video Demo [here](https://www.loom.com/share/5b853ed966604e4c9a6ca908816ee806)
 
 > View Live Demo [here]() 
 
