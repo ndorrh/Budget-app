@@ -5,12 +5,49 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body style="background-color:RGB(241, 243, 242)" >
+  <% if current_page?(groups_path) %>
+<nav class="navbar navbar-expand-lg" style="background-color:#3778C2; color:#EDF5FE;">
+  <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+      <i class="bi bi-list" style="color:#EDF5FE;"></i>
+    </button>
+    <a class="navbar-brand" href="#"  style="color:#EDF5FE;"><%='TRANSACTIONS'%></a>
+    <i class="bi bi-search"></i>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">        
+        <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger mt-3'%></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<%#Nav tabs%>
+  <ul class="nav nav-tabs justify-content-around"  style="background-color:#3778C2; color:#EDF5FE;">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#"  style="color:#EDF5FE;">Most recent</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"  style="color:#EDF5FE;">Most ancient</a>
+  </li>
+</ul>
+
+<div class="card rounded-0" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-2 d-flex justify-content-between p-2">
+    <div class="d-flex">
+  <span class="card-text text-muted"><%= 'Gift credit' %></span>
+  </div>
+  <h5 class="card-title my-0">$<%='56'%></h5>
+    </div>
+    
+  </div>
+</div>
+ <%end%>
+<%#logout button and page body%>
     <%= yield %>
   </body>
 </html>

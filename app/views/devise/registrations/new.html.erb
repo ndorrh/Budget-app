@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg" style="background-color:#3778C2; color:#EDF5FE;">
+<%= link_to new_user_session_path, class:"link-light ms-4 fs-3", style:"text-decoration:none;" do%>
+<i class="bi bi-arrow-left"></i>
+<%end%>
+<a class="navbar-brand" href="#"  style="color:#EDF5FE;"><%='REGISTRATION'%></a>
+<a class="navbar-brand" href="#"  style="color:#EDF5FE;"><%='Next'%></a>
+</nav>
+
+<div class="container-fluid mt-3">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <div class="form-floating mb-3">
+   
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full Name", class:"form-control", id:"floatingInput" %>
+     <%= f.label :name %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+    <%= f.label :email %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, autocomplete: "new-password",  class:"form-control", id:"floatingInput" %>
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+  </div>
+
+  <div class="form-floating mb-3">
+    
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingInput" %>
+    <%= f.label :password_confirmation %>
+  </div>
+
+  <div class="actions mb-2">
+    <%= f.submit "Sign up", class:"btn btn-primary"  %>
+  </div>
+<% end %>
+</div>
